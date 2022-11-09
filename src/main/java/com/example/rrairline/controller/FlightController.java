@@ -19,9 +19,9 @@ public class FlightController {
         this.flightService = flightService;
     }
 
-    @GetMapping("/api/flights/departure/{departure}")
-    public List<Flight> getAllDeparturesByCity(@PathVariable("departure") String departure){
-        return flightService.getFlightByDeparture(departure);
+    @GetMapping("/api/flights/departure")
+    public List<Flight> getAllDeparturesByCity(@RequestBody FlightInfo flightInfo){
+        return flightService.getFlightByDeparture(flightInfo.getDeparture());
     }
 
     @GetMapping("/api/flights")
