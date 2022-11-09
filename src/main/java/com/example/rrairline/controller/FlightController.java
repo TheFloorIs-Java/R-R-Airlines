@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200","https://rrairline.azurewebsites.net"})
 public class FlightController {
 
     private FlightService flightService;
@@ -19,9 +18,9 @@ public class FlightController {
         this.flightService = flightService;
     }
 
-    @GetMapping("/api/flights/departure")
-    public List<Flight> getAllDeparturesByCity(@RequestBody FlightInfo flightInfo){
-        return flightService.getFlightByDeparture(flightInfo.getDeparture());
+    @GetMapping("/api/flights/departure/{departure}")
+    public List<Flight> getAllDeparturesByCity(@PathVariable("departure") String departure){
+        return flightService.getFlightByDeparture(departure);
     }
 
     @GetMapping("/api/flights")
